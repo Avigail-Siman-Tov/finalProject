@@ -83,19 +83,19 @@ public class UserDetailsActivity extends AppCompatActivity {
 //        userProfile = user.getProfile();
 
         birthYearSpinner = findViewById(R.id.activity_user_details_spinner_birthyear);
-        InputsName =findViewById(R.id.activity_user_details_userName);
+        InputsName = findViewById(R.id.activity_user_details_userName);
         genderSpinner = findViewById(R.id.activity_user_details_spinner_gender);
         ArrayAdapter<CharSequence> adapterGender = ArrayAdapter.createFromResource(this, R.array.gender, android.R.layout.simple_spinner_item);
         adapterGender.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         genderSpinner.setAdapter(adapterGender);
-        errorCategory=findViewById(R.id.activity_user_details_textView_error_category);
+        errorCategory = findViewById(R.id.activity_user_details_textView_error_category);
         ArrayAdapter<CharSequence> adapterBirthYear = new ArrayAdapter(this, android.R.layout.simple_spinner_item, getYears());
         adapterBirthYear.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         birthYearSpinner.setAdapter(adapterBirthYear);
 
         textViewCategory = findViewById(R.id.activity_user_details_category_textView);
         selectedCategory = new boolean[categoriesArray.length];
-        saveBtn=findViewById(R.id.activity_user_details_btm);
+        saveBtn = findViewById(R.id.activity_user_details_btm);
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,7 +105,7 @@ public class UserDetailsActivity extends AppCompatActivity {
         genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                travelerGender=parent.getItemAtPosition(position).toString();
+                travelerGender = parent.getItemAtPosition(position).toString();
             }
 
             @Override
@@ -116,8 +116,8 @@ public class UserDetailsActivity extends AppCompatActivity {
         birthYearSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Log.d("Gender",parent.getItemAtPosition(position).toString());
-                travelerBirthYear=Integer.valueOf( parent.getItemAtPosition(position).toString());
+                Log.d("Gender", parent.getItemAtPosition(position).toString());
+                travelerBirthYear = Integer.valueOf(parent.getItemAtPosition(position).toString());
             }
 
             @Override
@@ -129,10 +129,10 @@ public class UserDetailsActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 BuildCategoryList();
-            }});
+            }
+        });
 
     }
-
 
     FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseUser user = auth.getCurrentUser();
