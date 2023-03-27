@@ -132,6 +132,8 @@ public class UserDetailsActivity extends AppCompatActivity {
             }});
 
     }
+
+
     FirebaseAuth auth = FirebaseAuth.getInstance();
     FirebaseUser user = auth.getCurrentUser();
     FirebaseFirestore db =FirebaseFirestore.getInstance();
