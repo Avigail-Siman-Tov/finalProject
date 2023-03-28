@@ -21,7 +21,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.auth.FirebaseUser;
@@ -38,12 +37,8 @@ import java.util.Map;
 
 public class UserDetailsActivity extends AppCompatActivity {
 
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_user_details);
-//    }
-//}
+
+
 
     TextInputLayout InputsName;
     Spinner genderSpinner, birthYearSpinner;
@@ -54,17 +49,13 @@ public class UserDetailsActivity extends AppCompatActivity {
     String travelerName,travelerGender,partitionValue ;
     int travelerBirthYear;
 
-    FirebaseAuth auth = FirebaseAuth.getInstance();
-    FirebaseUser user = auth.getCurrentUser();
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-
     final String[] categoriesArray={
             "amusement park","aquarium","art gallery","bar","casino",
             "museum","night club","park","shopping mall","spa",
             "tourist attraction","zoo", "bowling alley","cafe",
             "church","city hall","library","mosque", "synagogue"
     };
-    final String[] categoriesArraySaveInFirebase={
+    final String[] categoriesArraySaveInMongoDb={
             "amusement_park","aquarium","art_gallery","bar","casino",
             "museum","night_club","park","shopping_mall","spa",
             "tourist_attraction","zoo", "bowling_alley","cafe",
@@ -102,19 +93,7 @@ public class UserDetailsActivity extends AppCompatActivity {
         saveBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                insertUser();
-                partitionValue = user.getEmail();
-                travelerName = InputsName.getEditText().getText().toString();
-                if(travelerName.isEmpty() || travelerName.length()<3)  {
-                    showError(InputsName,"UserName is not valid");
-                }
-                else if (textViewCategory.getText()==""){
-                    errorCategory.setText("Select at least one category ");
-                }
-                else{
-                    saveTraveler(partitionValue,travelerName);
-                }
-
+                insertUser();
             }
         });
         genderSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -149,28 +128,31 @@ public class UserDetailsActivity extends AppCompatActivity {
 
     }
 
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    FirebaseUser user = auth.getCurrentUser();
+    FirebaseFirestore db =FirebaseFirestore.getInstance();
 
-
-    private void saveTraveler(String partitionValue ,String travelerName) {
-
+    private void saveTraveler() {
+        partitionValue = user.getEmail();
+        travelerName = InputsName.getEditText().getText().toString();
 //        ObjectId _id = new ObjectId(user.getId());
-        CollectionReference dbTraveler = db.collection("Traveler");
-        Traveler traveler = new Traveler(partitionValue, travelerName, travelerBirthYear, travelerGender);
-        Log.d( "traveler" , "traveler.toString()");
+//        Traveler traveler = new Traveler(partitionValue, travelerName, travelerBirthYear, travelerGender);
+
         // Create a Firestore instance
 
         // Create a new document with a generated ID
 //        DocumentReference docRef = db.collection("travelers").document();
 
         // Set the document data
-//        Map<String, Object> data = new HashMap<>();
-//        data.put("partitionValue", partitionValue);
-//        data.put("travelerName", travelerName);
-//        data.put("travelerBirthYear", travelerBirthYear);
-//        data.put("travelerGender", travelerGender);
-//        data.put("favoriteCategories", travelerFavoriteCategories);
-//        Log.i("data", "data");
-        dbTraveler.add(traveler)
+        Map<String, Object> data = new HashMap<>();
+        data.put("partitionValue", partitionValue);
+        data.put("travelerName", travelerName);
+        data.put("travelerBirthYear", travelerBirthYear);
+        data.put("travelerGender", travelerGender);
+        data.put("favoriteCategories", travelerFavoriteCategories);
+
+        db.collection("Traveler")
+                .add(data)
                 .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
@@ -190,7 +172,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
-                    public void onFailure(@NonNull Exception e) {
+                    public void onFailure(@NonNull @NotNull Exception e) {
                         Toast.makeText(UserDetailsActivity.this, "Error! Traveler is not Created", Toast.LENGTH_SHORT).show();
                     }
                 });
@@ -333,7 +315,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                 // use for loop
                 for (int j = 0; j < categoriesList.size(); j++) {
 
-                    travelerFavoriteCategories.add(categoriesArraySaveInFirebase[categoriesList.get(j)]);
+                    travelerFavoriteCategories.add(categoriesArraySaveInMongoDb[categoriesList.get(j)]);
                     // concat array value
                     stringBuilder.append(categoriesArray[categoriesList.get(j)]);
                     // check condition
@@ -375,18 +357,18 @@ public class UserDetailsActivity extends AppCompatActivity {
         // show dialog
         builder.show();
     }
-//    private  void insertUser(){
-//        String username= InputsName.getEditText().getText().toString();
-//        if(username.isEmpty() || username.length()<3)  {
-//            showError(InputsName,"UserName is not valid");
-//        }
-//        else if (textViewCategory.getText()==""){
-//            errorCategory.setText("Select at least one category ");
-//        }
-//        else{
-//            saveTraveler();
-//        }
-//    }
+    private  void insertUser(){
+        String username= InputsName.getEditText().getText().toString();
+        if(username.isEmpty() || username.length()<3)  {
+            showError(InputsName,"UserName is not valid");
+        }
+        else if (textViewCategory.getText()==""){
+            errorCategory.setText("Select at least one category ");
+        }
+        else{
+            saveTraveler();
+        }
+    }
 
 
     private void showError(TextInputLayout field, String text) {
