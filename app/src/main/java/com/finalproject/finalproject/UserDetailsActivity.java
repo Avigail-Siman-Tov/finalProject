@@ -163,7 +163,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                         else {
 
                             Toast.makeText(UserDetailsActivity.this, "saved", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(UserDetailsActivity.this, ProfilActivity.class);
+                            Intent intent = new Intent(UserDetailsActivity.this, MainActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
                             startActivity(intent);
                             finish();
