@@ -1,5 +1,7 @@
 package com.finalproject.finalproject;
 
+import static android.content.ContentValues.TAG;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,7 +66,7 @@ public class UserDetailsActivity extends AppCompatActivity {
             "tourist attraction","zoo", "bowling alley","cafe",
             "church","city hall","library","mosque", "synagogue"
     };
-    final String[] categoriesArraySaveInFirebase={
+    final String[] categoriesArraySaveInMongoDb={
             "amusement_park","aquarium","art_gallery","bar","casino",
             "museum","night_club","park","shopping_mall","spa",
             "tourist_attraction","zoo", "bowling_alley","cafe",
@@ -333,7 +335,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                 // use for loop
                 for (int j = 0; j < categoriesList.size(); j++) {
 
-                    travelerFavoriteCategories.add(categoriesArraySaveInFirebase[categoriesList.get(j)]);
+                    travelerFavoriteCategories.add(categoriesArraySaveInMongoDb[categoriesList.get(j)]);
                     // concat array value
                     stringBuilder.append(categoriesArray[categoriesList.get(j)]);
                     // check condition
@@ -348,6 +350,7 @@ public class UserDetailsActivity extends AppCompatActivity {
                 textViewCategory.setText(stringBuilder.toString());
             }
         });
+
 
         builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
             @Override
