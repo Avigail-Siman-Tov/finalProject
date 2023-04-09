@@ -40,8 +40,6 @@ import java.util.Map;
 public class UserDetailsActivity extends AppCompatActivity {
 
 
-
-
     TextInputLayout InputsName;
     Spinner genderSpinner, birthYearSpinner;
     TextView textViewCategory,errorCategory;
@@ -135,49 +133,57 @@ public class UserDetailsActivity extends AppCompatActivity {
     FirebaseFirestore db =FirebaseFirestore.getInstance();
 
     private void saveTraveler() {
-        partitionValue = user.getEmail();
-        travelerName = InputsName.getEditText().getText().toString();
+//        new Thread(new Runnable()
+//        {
+//            public void run()
+//            {
+                partitionValue = user.getEmail();
+                travelerName = InputsName.getEditText().getText().toString();
 //        ObjectId _id = new ObjectId(user.getId());
 //        Traveler traveler = new Traveler(partitionValue, travelerName, travelerBirthYear, travelerGender);
 
-        // Create a Firestore instance
+                // Create a Firestore instance
 
-        // Create a new document with a generated ID
+                // Create a new document with a generated ID
 //        DocumentReference docRef = db.collection("travelers").document();
 
-        // Set the document data
-        Map<String, Object> data = new HashMap<>();
-        data.put("partitionValue", partitionValue);
-        data.put("travelerName", travelerName);
-        data.put("travelerBirthYear", travelerBirthYear);
-        data.put("travelerGender", travelerGender);
-        data.put("favoriteCategories", travelerFavoriteCategories);
+                // Set the document data
+                Map<String, Object> data = new HashMap<>();
+                data.put("partitionValue", partitionValue);
+                data.put("travelerName", travelerName);
+                data.put("travelerBirthYear", travelerBirthYear);
+                data.put("travelerGender", travelerGender);
+                data.put("favoriteCategories", travelerFavoriteCategories);
 
-        db.collection("Traveler")
-                .add(data)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        if (documentReference == null) {
-                            Toast.makeText(UserDetailsActivity.this, "Error! Traveler is not Createdooooo", Toast.LENGTH_SHORT).show();
+                db.collection("Traveler")
+                        .add(data)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                if (documentReference == null) {
+                                    Toast.makeText(UserDetailsActivity.this, "Error! Traveler is not Createdooooo", Toast.LENGTH_SHORT).show();
 
-                        }
-                        else {
+                                }
+                                else {
 
-                            Toast.makeText(UserDetailsActivity.this, "saved", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(UserDetailsActivity.this, MainActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                            finish();
-                        }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull @NotNull Exception e) {
-                        Toast.makeText(UserDetailsActivity.this, "Error! Traveler is not Created", Toast.LENGTH_SHORT).show();
-                    }
-                });
+                                    Toast.makeText(UserDetailsActivity.this, "saved", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(UserDetailsActivity.this, MainActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    startActivity(intent);
+                                    finish();
+                                }
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull @NotNull Exception e) {
+                                Toast.makeText(UserDetailsActivity.this, "Error! Traveler is not Created", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+
+//            }
+//        }).start();
+
     }
 //    private void saveTraveler() {
 //        String partitionValue = userProfile.getEmail();
