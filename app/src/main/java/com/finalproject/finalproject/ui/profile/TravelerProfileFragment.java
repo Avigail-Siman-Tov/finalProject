@@ -15,6 +15,9 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.finalproject.finalproject.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.FirebaseFirestore;
 //import com.finalproject.finalproject.databinding.FragmentNotificationsBinding;
 
 
@@ -59,6 +62,11 @@ public class TravelerProfileFragment extends Fragment {
 //                Navigation.findNavController(view).navigate(TravelerProfileFragmentDirections.actionNavProfileToLogoutActivity());
             }
         });
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        FirebaseFirestore db =FirebaseFirestore.getInstance();
+
+        mail.setText(user.getEmail());
 //        Model.instance.getTravelerByEmailInDB(user.getProfile().getEmail(), getContext(), new Model.GetTravelerByEmailListener() {
 //            @Override
 //            public void onComplete(Traveler traveler, List<String> favoriteCategories) {

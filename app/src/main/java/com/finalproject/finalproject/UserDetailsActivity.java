@@ -133,10 +133,6 @@ public class UserDetailsActivity extends AppCompatActivity {
     FirebaseFirestore db =FirebaseFirestore.getInstance();
 
     private void saveTraveler() {
-//        new Thread(new Runnable()
-//        {
-//            public void run()
-//            {
                 partitionValue = user.getEmail();
                 travelerName = InputsName.getEditText().getText().toString();
 //        ObjectId _id = new ObjectId(user.getId());
@@ -180,9 +176,6 @@ public class UserDetailsActivity extends AppCompatActivity {
                                 Toast.makeText(UserDetailsActivity.this, "Error! Traveler is not Created", Toast.LENGTH_SHORT).show();
                             }
                         });
-
-//            }
-//        }).start();
 
     }
 //    private void saveTraveler() {
