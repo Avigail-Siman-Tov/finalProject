@@ -1,4 +1,4 @@
-package com.finalproject.finalproject.ui.notifications;
+package com.finalproject.finalproject.ui.profile;
 
 import androidx.appcompat.app.AppCompatActivity;
 

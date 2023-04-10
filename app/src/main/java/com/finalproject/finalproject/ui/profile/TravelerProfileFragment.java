@@ -1,8 +1,7 @@
-package com.finalproject.finalproject.ui.notifications;
+package com.finalproject.finalproject.ui.profile;
 
 import android.content.Context;
 import android.net.ConnectivityManager;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,19 +10,13 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.navigation.Navigation;
 
 import com.finalproject.finalproject.R;
-import com.finalproject.finalproject.collection.Traveler;
 //import com.finalproject.finalproject.databinding.FragmentNotificationsBinding;
 
-import java.util.List;
 
 public class TravelerProfileFragment extends Fragment {
 

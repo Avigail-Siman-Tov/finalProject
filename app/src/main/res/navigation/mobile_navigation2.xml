@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.finalproject.finalproject.ui.home.HomeFragment"
+        android:name="com.finalproject.finalproject.ui.planTrip.PlanTripFragment"
         android:label="Plan Trip"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.finalproject.finalproject.ui.dashboard.DashboardFragment"
+        android:name="com.finalproject.finalproject.ui.myTrips.DashboardFragment"
         android:label="My Planing"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.finalproject.finalproject.ui.notifications.TravelerProfileFragment"
+        android:name="com.finalproject.finalproject.ui.profile.TravelerProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_traveler_profile" />
 </navigation>
