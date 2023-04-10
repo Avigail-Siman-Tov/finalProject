@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.finalproject.finalproject.ui.notifications.NotificationsFragment"
+        android:name="com.finalproject.finalproject.ui.notifications.TravelerProfileFragment"
         android:label="Profile"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_traveler_profile" />
 </navigation>
