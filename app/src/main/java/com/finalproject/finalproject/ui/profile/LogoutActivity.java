@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.finalproject.finalproject.R;
 
-public class LogoutActivity extends AppCompatActivity {
+    public class LogoutActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
