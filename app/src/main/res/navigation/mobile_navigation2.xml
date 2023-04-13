@@ -40,5 +40,13 @@
         <action
             android:id="@+id/action_nav_profile_to_travelerEditProfileFragment"
             app:destination="@id/travelerEditProfileFragment" />
+        <action
+            android:id="@+id/action_nav_profile_to_logoutActivity"
+            app:destination="@id/logoutActivity" />
     </fragment>
+    <activity
+        android:id="@+id/logoutActivity"
+        android:name="com.finalproject.finalproject.ui.profile.LogoutActivity"
+        android:label="activity_logout"
+        tools:layout="@layout/activity_logout" />
 </navigation>
