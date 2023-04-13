@@ -62,19 +62,11 @@ public class UserDetailsActivity extends AppCompatActivity {
             "church","city_hall","library","mosque", "synagogue"
     };
 
-    //    User user;
-//    UserProfile userProfile;
     List<String> travelerFavoriteCategories;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_details);
-//        Realm.init(this); // context, usually an Activity or Application
-//        App app = new App(new AppConfiguration.Builder(getString(R.string.AppId)).build());
-
-//
-//        user = app.currentUser();
-//        userProfile = user.getProfile();
 
         birthYearSpinner = findViewById(R.id.activity_user_details_spinner_birthyear);
         InputsName = findViewById(R.id.activity_user_details_userName);
@@ -135,21 +127,11 @@ public class UserDetailsActivity extends AppCompatActivity {
     private void saveTraveler() {
         partitionValue = user.getEmail();
         travelerName = InputsName.getEditText().getText().toString();
-//        ObjectId _id = new ObjectId(user.getId());
         Traveler traveler = new Traveler(partitionValue, travelerName, travelerBirthYear, travelerGender , travelerFavoriteCategories);
 
                 // Create a Firestore instance
 
                 // Create a new document with a generated ID
-//        DocumentReference docRef = db.collection("travelers").document();
-
-        // Set the document data
-//        Map<String, Object> data = new HashMap<>();
-//        data.put("partitionValue", partitionValue);
-//        data.put("travelerName", travelerName);
-//        data.put("travelerBirthYear", travelerBirthYear);
-//        data.put("travelerGender", travelerGender);
-//        data.put("favoriteCategories", travelerFavoriteCategories);
 
         db.collection("Traveler")
                 .add(traveler)
@@ -177,93 +159,6 @@ public class UserDetailsActivity extends AppCompatActivity {
                     }
                 });
     }
-//    private void saveTraveler() {
-//        String partitionValue = userProfile.getEmail();
-//        travelerName = InputsName.getEditText().getText().toString();
-//        ObjectId _id = new ObjectId(user.getId());
-//        collection.Traveler traveler = new collection.Traveler(partitionValue, travelerName, travelerBirthYear, travelerGender);
-//        List<FavoriteCategories> listFavoriteCategories = new ArrayList<FavoriteCategories>();
-//        for (int i = 0; i < travelerFavoriteCategories.size(); ++i) {
-//            listFavoriteCategories.add(new FavoriteCategories(travelerFavoriteCategories.get(i), traveler.getTravelerMail()));
-//        }
-//        // Create a new document in the "travelers" collection
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        CollectionReference travelersRef = db.collection("travelers");
-//        travelersRef.add(traveler)
-//                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-//                    @Override
-//                    public void onSuccess(DocumentReference documentReference) {
-//                        // Add the traveler's favorite categories to a subcollection
-//                        CollectionReference categoriesRef = documentReference.collection("favoriteCategories");
-//                        for (FavoriteCategories category : listFavoriteCategories) {
-//                            categoriesRef.add(category);
-//                        }
-//                        Toast.makeText(UserDetailsActivity.this, "saved", Toast.LENGTH_LONG).show();
-//                        Intent intent = new Intent(UserDetailsActivity.this, MainActivity.class);
-//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        startActivity(intent);
-//                        finish();
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Toast.makeText(UserDetailsActivity.this, "Error! collection.Traveler is not Created", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//    }
-//    FirebaseAuth auth = FirebaseAuth.getInstance();
-//    FirebaseUser user = auth.getCurrentUser();
-//
-//    private void saveTraveler() {
-//        FirebaseApp.initializeApp(this);
-//        FirebaseFirestore db = FirebaseFirestore.getInstance();
-//        db.collection("travelers").document(user.getEmail())
-//                .set(traveler)
-//                .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                    @Override
-//                    public void onSuccess(Void aVoid) {
-//                        Toast.makeText(UserDetailsActivity.this, "saved", Toast.LENGTH_LONG).show();
-//                        Intent intent=new Intent(UserDetailsActivity.this, MainActivity.class);
-//                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-//                        startActivity(intent);
-//                        finish();
-//                    }
-//                })
-//                .addOnFailureListener(new OnFailureListener() {
-//                    @Override
-//                    public void onFailure(@NonNull Exception e) {
-//                        Toast.makeText(UserDetailsActivity.this, "Error! collection.Traveler is not Created", Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-//
-//    }
-//    private void saveTraveler() {
-//        String partitionValue = userProfile.getEmail();
-//        travelerName=InputsName.getEditText().getText().toString();
-//        ObjectId _id=new ObjectId(user.getId());
-//        collection.Traveler traveler=new collection.Traveler(partitionValue, travelerName,travelerBirthYear,travelerGender);
-//        List<FavoriteCategories> listFavoriteCategories = new ArrayList<FavoriteCategories>();
-//        for(int i=0; i< travelerFavoriteCategories.size();++i){
-//            listFavoriteCategories.add(new FavoriteCategories(travelerFavoriteCategories.get(i),traveler.getTravelerMail()));
-//        }
-//
-//        Model.instance.addTraveler(traveler,listFavoriteCategories,getApplicationContext(),new Model.AddTravelerListener() {
-//            @Override
-//            public void onComplete(String isSuccess) {
-//                if (isSuccess.equals("true")) {
-//                    Toast.makeText(UserDetailsActivity.this, "saved", Toast.LENGTH_LONG).show();
-//                    Intent intent=new Intent(UserDetailsActivity.this, MainActivity.class);
-//                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    startActivity(intent);
-//                    finish();
-//                } else {
-//                    Toast.makeText(UserDetailsActivity.this, "Error! collection.Traveler is not Created", Toast.LENGTH_SHORT).show();
-//                }
-//            }
-//        });
-//
-//    }
 
     public String[] getYears() {
         String[] years = new String[120];
