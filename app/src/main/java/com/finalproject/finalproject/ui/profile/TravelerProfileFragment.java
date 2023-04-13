@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.Navigation;
 
 import com.finalproject.finalproject.R;
 import com.finalproject.finalproject.collection.Traveler;
@@ -106,11 +107,11 @@ public class TravelerProfileFragment extends Fragment {
                     // Set up edit button click listener
                     editBtn.setOnClickListener(v -> {
                         if (isNetworkConnected()) {
-//                            String[] arrayCategories = new String[favoriteCategories.size()];
-//                            favoriteCategories.toArray(arrayCategories);
-                            // Navigate to edit profile fragment with traveler and favorite categories data
-                            // TravelerProfileFragmentDirections.ActionNavProfileToTravelerEditProfileFragment action = TravelerProfileFragmentDirections.actionNavProfileToTravelerEditProfileFragment(traveler, arrayCategories);
-                            // Navigation.findNavController(view).navigate(action);
+                            String[] arrayCategories = new String[favoriteCategories.size()];
+                            favoriteCategories.toArray(arrayCategories);
+//                             Navigate to edit profile fragment with traveler and favorite categories data
+                            TravelerProfileFragmentDirections.ActionNavProfileToTravelerEditProfileFragment action = TravelerProfileFragmentDirections.actionNavProfileToTravelerEditProfileFragment(traveler, arrayCategories);
+                             Navigation.findNavController(view).navigate(action);
                         } else {
                             Toast.makeText(getContext(), "Error! Connect to Internet", Toast.LENGTH_SHORT).show();
                         }
