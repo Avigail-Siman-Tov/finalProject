@@ -186,7 +186,7 @@
                 android:textAllCaps="false"
                 android:textSize="18sp"
                 android:textStyle="bold"
-                app:backgroundTint="@color/lavender"
+                app:backgroundTint="@color/red"
                 app:layout_constraintBottom_toBottomOf="@+id/fragment_edit_profile_edit_btn"
                 app:layout_constraintEnd_toEndOf="@+id/relativeLayout"
                 app:layout_constraintTop_toTopOf="@+id/fragment_edit_profile_edit_btn" />
