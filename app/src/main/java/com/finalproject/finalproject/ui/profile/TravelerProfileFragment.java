@@ -1,8 +1,11 @@
 package com.finalproject.finalproject.ui.profile;
 
+import static androidx.constraintlayout.helper.widget.MotionEffect.TAG;
+
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,14 +13,21 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.finalproject.finalproject.R;
+import com.finalproject.finalproject.collection.Traveler;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+
+import java.util.List;
 //import com.finalproject.finalproject.databinding.FragmentNotificationsBinding;
 
 
@@ -66,7 +76,50 @@ public class TravelerProfileFragment extends Fragment {
         FirebaseUser user = auth.getCurrentUser();
         FirebaseFirestore db =FirebaseFirestore.getInstance();
 
-        mail.setText(user.getEmail());
+//
+
+        CollectionReference travelersRef = db.collection("Traveler");
+
+// Query to get traveler by email
+        Query query = travelersRef.whereEqualTo("travelerMail", user.getEmail());
+
+        query.get().addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                for (QueryDocumentSnapshot document : task.getResult()) {
+                    Traveler traveler = document.toObject(Traveler.class);
+
+                    // Get favorite categories as a list
+                    List<String> favoriteCategories = traveler.getFavoriteCategories();
+
+                    // Set traveler name and mail
+                    name.setText("Hello " + traveler.getTravelerName());
+                    mail.setText(traveler.getTravelerMail());
+
+                    // Convert favorite categories to an array
+                    arrCategory = new String[favoriteCategories.size()];
+                    favoriteCategories.toArray(arrCategory);
+
+                    // Set up the adapter and list view
+                    adapter = new MyAdapter();
+                    listCategory.setAdapter(adapter);
+
+                    // Set up edit button click listener
+                    editBtn.setOnClickListener(v -> {
+                        if (isNetworkConnected()) {
+//                            String[] arrayCategories = new String[favoriteCategories.size()];
+//                            favoriteCategories.toArray(arrayCategories);
+                            // Navigate to edit profile fragment with traveler and favorite categories data
+                            // TravelerProfileFragmentDirections.ActionNavProfileToTravelerEditProfileFragment action = TravelerProfileFragmentDirections.actionNavProfileToTravelerEditProfileFragment(traveler, arrayCategories);
+                            // Navigation.findNavController(view).navigate(action);
+                        } else {
+                            Toast.makeText(getContext(), "Error! Connect to Internet", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            } else {
+                Log.d(TAG, "Error getting documents: ", task.getException());
+            }
+        });
 //        Model.instance.getTravelerByEmailInDB(user.getProfile().getEmail(), getContext(), new Model.GetTravelerByEmailListener() {
 //            @Override
 //            public void onComplete(Traveler traveler, List<String> favoriteCategories) {
