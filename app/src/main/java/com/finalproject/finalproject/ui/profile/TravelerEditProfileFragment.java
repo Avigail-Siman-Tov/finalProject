@@ -13,7 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -79,7 +78,6 @@ public class TravelerEditProfileFragment extends Fragment {
             "church","city_hall","library","mosque", "synagogue"
     };
     final String[] genderArray={ "Male","Female","Other"};
-//    User user;
     String[] listCategories;
 
     FirebaseFirestore db =FirebaseFirestore.getInstance();

@@ -63,9 +63,6 @@ public class TravelerProfileFragment extends Fragment {
         mail = view.findViewById(R.id.traveler_profile_email);
         name = view.findViewById(R.id.traveler_profile_name);
         listCategory=view.findViewById(R.id.traveler_profile_list_category);
-//        Realm.init(getContext()); // context, usually an Activity or Application
-//        App app = new App(new AppConfiguration.Builder(getString(R.string.AppId)).build());
-//        User user = app.currentUser();
         logout=view.findViewById(R.id.traveler_profile_logout);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -121,37 +118,6 @@ public class TravelerProfileFragment extends Fragment {
                 Log.d(TAG, "Error getting documents: ", task.getException());
             }
         });
-//        Model.instance.getTravelerByEmailInDB(user.getProfile().getEmail(), getContext(), new Model.GetTravelerByEmailListener() {
-//            @Override
-//            public void onComplete(Traveler traveler, List<String> favoriteCategories) {
-//                name.setText("Hello "+traveler.getTravelerName());
-//                mail.setText(traveler.getTravelerMail());
-//                arrCategory= new String[favoriteCategories.size()];
-//                favoriteCategories.toArray(arrCategory);
-//                adapter=new MyAdapter();
-//                listCategory.setAdapter(adapter);
-////                String c = favoriteCategories.stream()
-////                                    .map(n -> String.valueOf(n))
-////                                    .collect(Collectors.joining("\n", "", ""));
-////                c=c.replace("_"," ");
-////                categories.setText(c);
-////                editBtn= view.findViewById(R.id.traveler_profile_edit_btn);
-////                editBtn.setOnClickListener(new View.OnClickListener() {
-////                    @Override
-////                    public void onClick(View v) {
-////                        if(isNetworkConnected()) {
-////                            String[] arrayCategories = new String[favoriteCategories.size()];
-////                            favoriteCategories.toArray(arrayCategories);
-//////                            TravelerProfileFragmentDirections.ActionNavProfileToTravelerEditProfileFragment action = TravelerProfileFragmentDirections.actionNavProfileToTravelerEditProfileFragment(traveler, arrayCategories);
-//////                            Navigation.findNavController(view).navigate(action);
-////                        }
-////                        else{
-////                            Toast.makeText(getContext(), "Error! Connect to Internet", Toast.LENGTH_SHORT).show();
-////                        }
-////                    }
-////                });
-//            }
-//        });
 
         return view;
     }
