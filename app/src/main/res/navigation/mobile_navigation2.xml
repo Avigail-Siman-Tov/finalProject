@@ -24,7 +24,11 @@
         android:id="@+id/navigation_home"
         android:name="com.finalproject.finalproject.ui.planTrip.PlanTripFragment"
         android:label="Plan Trip"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_plan_trip" >
+        <action
+            android:id="@+id/action_nav_plan_trip_to_splashPlanTripFragment"
+            app:destination="@id/splashPlanTripFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_dashboard"
@@ -43,6 +47,30 @@
         <action
             android:id="@+id/action_nav_profile_to_logoutActivity"
             app:destination="@id/logoutActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashPlanTripFragment"
+        android:name="com.finalproject.finalproject.ui.planTrip.SplashPlanTripFragment"
+        android:label="1"
+        tools:layout="@layout/fragment_shplash_plan_trip">
+        <argument
+            android:name="tripDays"
+            app:argType="integer" />
+        <argument
+            android:name="locationTrip"
+            app:argType="string" />
+<!--        <action-->
+<!--            android:id="@+id/action_splashPlanTripFragment_to_placesListFragment"-->
+<!--            app:destination="@id/placesListFragment" />-->
+        <argument
+            android:name="latitude"
+            app:argType="float" />
+        <argument
+            android:name="longitude"
+            app:argType="float" />
+        <argument
+            android:name="nameTrip"
+            app:argType="string" />
     </fragment>
     <activity
         android:id="@+id/logoutActivity"

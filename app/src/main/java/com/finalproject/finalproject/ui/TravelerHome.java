@@ -8,13 +8,10 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 
 import com.finalproject.finalproject.R;
-
-import java.util.stream.Collectors;
 
 
 public class TravelerHome extends Fragment {
@@ -25,7 +22,7 @@ public class TravelerHome extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_plan_trip, container, false);
         return view;
     }
 }
