@@ -8,6 +8,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import com.google.android.libraries.places.api.Places;
+import com.google.android.libraries.places.api.model.Place;
+import com.google.android.libraries.places.api.model.TypeFilter;
+import static java.util.Arrays.asList;
 
 
 
@@ -29,10 +32,8 @@ import androidx.navigation.Navigation;
 
 
 import com.finalproject.finalproject.R;
-import com.finalproject.finalproject.collection.Place;
 import com.finalproject.finalproject.horizontalNumberPicker.HorizontalNumberPicker;
 import com.google.android.gms.common.api.Status;
-import com.google.android.libraries.places.api.model.TypeFilter;
 import com.google.android.libraries.places.api.net.PlacesClient;
 import com.google.android.libraries.places.widget.AutocompleteSupportFragment;
 import com.google.android.libraries.places.widget.listener.PlaceSelectionListener;
@@ -59,14 +60,14 @@ public class PlanTripFragment extends Fragment {
         InputsTripName =view.findViewById(R.id.fragment_plan_trip_input_name_trip);
 
         myLoadingDialog=new ProgressDialog(this.getContext());
-//        TextView tripDays = view.findViewById(R.id.et_number);
+        TextView tripDays = view.findViewById(R.id.et_number);
          //Create a new Places client instance.
         PlacesClient placesClient = Places.createClient(getActivity());
         // Initialize the AutocompleteSupportFragment.
         AutocompleteSupportFragment autocompleteFragment = (AutocompleteSupportFragment)
                 this.getChildFragmentManager().findFragmentById(R.id.place_autocomplete_fragment);
         autocompleteFragment.setTypeFilter(TypeFilter.CITIES);
-//        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.PHOTO_METADATAS,Place.Field.LAT_LNG));
+        autocompleteFragment.setPlaceFields(Arrays.asList(Place.Field.ID, Place.Field.NAME, Place.Field.PHOTO_METADATAS,Place.Field.LAT_LNG));
         autocompleteFragment.setOnPlaceSelectedListener(new PlaceSelectionListener() {
             @Override
             public void onError(@NonNull Status status) {
@@ -89,13 +90,13 @@ public class PlanTripFragment extends Fragment {
 //                tripDaysNumber=Integer.parseInt(tripDays.getText().toString());
                 if(checkName(InputsTripName.getEditText().getText().toString()) )
                 {
-//                    if(myPlace!=null) {
-//                        PlanTripFragmentDirections.ActionNavPlanTripToSplashPlanTripFragment action = PlanTripFragmentDirections.actionNavPlanTripToSplashPlanTripFragment(tripDaysNumber, myPlace.getName(), (float) myPlace.getLatLng().latitude, (float) myPlace.getLatLng().longitude, tripName);
-//                        Navigation.findNavController(view).navigate(action);
-//                    }
-//                    else {
-//                        Toast.makeText(getContext(),"please choose destination for the trip", Toast.LENGTH_SHORT).show();
-//                    }
+                    if(myPlace!=null) {
+                        PlanTripFragmentDirections.ActionNavPlanTripToSplashPlanTripFragment action = PlanTripFragmentDirections.actionNavPlanTripToSplashPlanTripFragment(tripDaysNumber, myPlace.getName(), (float) myPlace.getLatLng().latitude, (float) myPlace.getLatLng().longitude, tripName);
+                        Navigation.findNavController(view).navigate(action);
+                    }
+                    else {
+                        Toast.makeText(getContext(),"please choose destination for the trip", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }});
 
